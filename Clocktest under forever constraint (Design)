@@ -1,0 +1,4 @@
+module clocktest(clk);
+  input clk;
+  assign clk=~clk;
+endmodule
