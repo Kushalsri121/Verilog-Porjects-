@@ -1,0 +1,13 @@
+// D-FF with asyn. set and rest
+module d_ff (q,qbar,s,rs,clk,d);
+  input s,rs,d,clk;
+  output reg q;
+  output qbar;
+  assign qbar=~q;
+  always@(posedge clk or negedge rs or negedge clk)
+    begin
+        if (rs==0) q<=0;
+      else if (s==0) q<=1;
+      else q<=d;
+    end
+endmodule
