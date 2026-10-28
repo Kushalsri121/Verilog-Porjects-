@@ -1,0 +1,22 @@
+module d_test;
+  reg s ,rs,d,clk;
+  wire q,qbar;
+  d_ff DUT(q,qbar,s,rs,clk,d);
+  initial clk=1'b0;
+  always #5 clk=~clk;
+  initial
+    begin
+      $dumpfile("d_ff.vcd");
+      $dumpvars(0,d_test);
+      $monitor($time,"q=%b,qbar=%b,s=%b,rs=%b,clk=%b,d=%b",q,qbar,s,rs,clk,d);
+       s=1'b0; rs=1'b0; d=1'b0;
+      #12 d=1'b1;
+      #10 d=1'b0;
+      #10 s=1'b1;
+      #10 s=1'b0; rs=1'b1;
+      #10 s=1'b1; rs=1'b0;
+      #20$finish;
+    end 
+endmodule
+      
+  
