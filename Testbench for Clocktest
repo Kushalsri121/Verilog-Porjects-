@@ -1,0 +1,14 @@
+module clktest;
+  reg clk;
+  initial 
+    begin
+      clk=1'b0;
+      forever #5 clk=~clk;
+    end
+  initial
+    begin
+      $dumpfile("clocktest.vcd");
+      $dumpvars(0,clktest);
+      #100 $finish;
+    end
+endmodule
